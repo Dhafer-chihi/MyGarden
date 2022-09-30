@@ -1,0 +1,16 @@
+<div class="col-lg-11 text-center text-lg-right" *ngIf="tags">
+  <ul class="list-inline mb-2" id="portfolio-flters">
+    <li class="btn btn-sm btn-outline-primary m-1 active" data-filter="*">
+      <a routerLink="" style="color: black">All</a>
+    </li>
+
+    <li
+      class="btn btn-sm btn-outline-primary m-1"
+      data-filter="*"
+      *ngFor="let tag of tags"
+      routerLink="/tag/{{ tag.name }}"
+    >
+      {{ tag.name }}({{ tag.count }})
+    </li>
+  </ul>
+</div>

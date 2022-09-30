@@ -1,0 +1,26 @@
+
+li img{
+  width: 5rem;
+  height: 5rem;
+  border-radius:  100rem;
+  object-fit: cover;
+}
+li select{
+  width: 3rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  font-size: 1.1rem;
+  font-weight: 100;
+
+}
+.checkout button{
+  padding: 1rem;
+  color: black;
+  background:#FFC600;
+  display: block;
+  border-radius: 1rem;
+  text-align: center;
+  display: block;
+  justify-self: center;
+}

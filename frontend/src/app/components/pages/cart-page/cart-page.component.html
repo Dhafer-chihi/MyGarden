@@ -1,0 +1,62 @@
+<br /><br />
+<app-title></app-title>
+<br /><br />
+<app-not-found
+  [visible]="!cart || !cart.items.length"
+  notFoundMessage="Cart Page Is Empty!"
+  resetLinkText="Go To Homepage"
+></app-not-found>
+<div class="mb-5" *ngIf="cart && cart.items.length">
+  <ul class="list-inline m-0">
+    <li
+      *ngFor="let cartItem of cart.items"
+      class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center"
+    >
+      <div>
+        <img [src]="cartItem.product.imageUrl" [alt]="cartItem.product.name" />
+      </div>
+      <div>
+        <a routerLink="/food/{{ cartItem.product.id }}">
+          {{ cartItem.product.name }}
+        </a>
+      </div>
+      <div>
+        <select
+          #quantitySelect
+          [value]="cartItem.quantity"
+          (change)="changeQuantity(cartItem, quantitySelect.value)"
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div>
+        {{ cartItem.price | currency }}
+      </div>
+      <div>
+        <button
+          class="badge badge-primary badge-pill"
+          (click)="removeFromCart(cartItem)"
+        >
+          Remove
+        </button>
+      </div>
+    </li>
+    <li
+      class="mb-1 py-2 px-2 bg-light d-flex justify-content-between align-items-center"
+    >
+      <div></div>
+      <div>Total Count</div>
+      <div>{{ cart.totalCount }}</div>
+
+      <div>Total Price</div>
+      <div>${{ cart.totalPrice }}</div>
+      <div class="checkout">
+        <button routerLink="/checkout">Procced to Checkout</button>
+      </div>
+    </li>
+  </ul>
+</div>

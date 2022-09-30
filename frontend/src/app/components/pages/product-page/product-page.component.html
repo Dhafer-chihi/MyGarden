@@ -1,0 +1,49 @@
+<app-not-found
+  [visible]="!product"
+  notFoundMessage="Product Not Found"
+  resetLinkText="Go To Homepage"
+>
+</app-not-found>
+<div *ngIf="product" class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-5" style="min-height: 400px">
+        <div class="position-relative h-100 rounded overflow-hidden">
+          <img
+            class="position-absolute w-100 h-100"
+            [src]="product.imageUrl"
+            [alt]="product.name"
+            style="object-fit: cover"
+          />
+        </div>
+      </div>
+      <div class="col-lg-7 pt-lg-5 pb-3">
+        <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">
+          <span *ngFor="let tag of product.tags" routerLink="/tag/{{ tag }}">{{
+            product.tags
+          }}</span>
+        </h6>
+        <h1 class="mb-4 section-title">
+          {{ product.name }}
+        </h1>
+        <h4>{{ product.price | currency }}€</h4>
+        {{ product.matter }}<br />
+        <span class="favorite {{ product.favorite ? '' : 'not' }}">💛</span
+        ><br />
+        <star-rating
+          [value]="product.stars"
+          [totalstars]="5"
+          checkedcolor="#F9C802"
+          uncheckedcolor="black"
+          size="22px"
+          [readonly]="true"
+        ></star-rating>
+        <br />
+
+        <button (click)="addToCart()" class="btn btn-primary mr-5">
+          <i class="fas fa-cart-plus"></i>&nbsp; Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
